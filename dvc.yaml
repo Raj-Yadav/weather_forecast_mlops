@@ -1,0 +1,27 @@
+stages:
+
+  collect:
+    cmd: python data_collection.py
+    deps:
+      - data_collection.py    # if this script changes, re-run
+    outs:
+      - raw_data.csv          # DVC tracks this output
+
+  preprocess:
+    cmd: python preprocessing.py
+    deps:
+      - preprocessing.py
+      - raw_data.csv          # if raw data changes, re-preprocess
+    outs:
+      - processed_data.csv
+
+  train:
+    cmd: python train_model.py
+    deps:
+      - train_model.py
+      - processed_data.csv
+    outs:
+      - model_.pkl
+    metrics:
+      - metrics.json:
+          cache: false        # metrics are small — keep them in Git
