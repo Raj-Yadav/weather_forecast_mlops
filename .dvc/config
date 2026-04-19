@@ -2,4 +2,4 @@
     analytics = false
     remote = myremote
 ['remote "myremote"']
-    url = gdrive://https://drive.google.com/drive/u/0/folders/1WB2gaXfm0Wbhc9-OOE4pZys75h6EQmhe
+    url = /tmp/dvc-remote-storage
