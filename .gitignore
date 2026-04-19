@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Data files — tracked by DVC, not Git
+*.csv
+*.pkl
+
+# Airflow generated files
+airflow/logs/
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/standalone_admin_password.txt
+airflow/webserver_config.py
+
+# MLFlow local tracking
+mlruns/
+mlartifacts/
+
+# Environment & secrets
+.env
+*.env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+
+# IDE
+.vscode/
+.idea/

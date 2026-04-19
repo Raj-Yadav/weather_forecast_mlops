@@ -1,0 +1,19 @@
+# --- Core API (FastAPI Standard) ---
+# Includes uvicorn, email-validator, and starlette
+fastapi[standard]==0.136.0
+
+# --- Data Science & Machine Learning ---
+numpy==2.2.1
+pandas==2.2.3
+scikit-learn==1.6.1
+
+# --- MLOps & Data Versioning ---
+# MLflow 3.0 is a major upgrade with unified GenAI/ML tracing
+mlflow==3.11.1
+dvc==3.67.1
+dvc[gdrive]
+
+# --- Utilities ---
+requests==2.33.1
+python-dotenv==1.0.1
+pytest==7.4.0
