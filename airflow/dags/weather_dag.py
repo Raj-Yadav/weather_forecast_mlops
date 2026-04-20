@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.providers.standard.operators.python import PythonOperator
+# from airflow.providers.standard.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator
+
 
 # --- DEFAULT ARGUMENTS ---
 # These apply to every task in the DAG unless overridden at the task level.

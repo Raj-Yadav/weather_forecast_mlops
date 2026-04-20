@@ -1,6 +1,6 @@
 # --- Core API (FastAPI Standard) ---
 # Includes uvicorn, email-validator, and starlette
-fastapi[standard]==0.136.0
+fastapi[standard]
 
 # --- Data Science & Machine Learning ---
 numpy==2.2.1

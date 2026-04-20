@@ -1,0 +1,45 @@
+# Ignore Git metadata and repo config
+.git
+.gitignore
+
+# Ignore Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# # Ignore environment files and secrets
+# .env
+# *.env
+
+# Ignore local data and ML artifacts
+*.csv
+*.pkl
+*.db
+mlartifacts/
+mlruns/
+raw_data.csv
+processed_data.csv
+model_.pkl
+mlflow.db
+users.db
+
+# Ignore DVC metadata and data
+.dvc/
+.dvcignore
+
+# Ignore Airflow runtime files and logs
+airflow/
+
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/standalone_admin_password.txt
+airflow/webserver_config.py
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+
+# Ignore Docker and build artifacts
+docker-compose*.yml
