@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 
 # --- DEFAULT ARGUMENTS ---
 # These apply to every task in the DAG unless overridden at the task level.
@@ -32,20 +32,27 @@ def task_collect():
     """Fetch fresh weather data from the API and write raw_data.csv."""
     import sys
     import os
-    # Add project root to path so imports work inside Airflow's process
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    # Add project root to Python path
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    sys.path.insert(0, project_root)
+    
     from data_collection import fetch_weather_data, save_weather_data
     data = fetch_weather_data()
     save_weather_data(data)
+    print("Data collected successfully")
 
 
 def task_preprocess():
     """Normalize and encode raw_data.csv → processed_data.csv."""
     import sys
     import os
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    # Add project root to Python path
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    sys.path.insert(0, project_root)
+    
     from preprocessing import preprocess
     preprocess()
+    print("Data preprocessed successfully")
 
 
 # --- TASK OPERATORS ---
