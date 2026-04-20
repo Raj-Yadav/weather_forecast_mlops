@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+
+  # --- AIRFLOW ---
+  # Uses the official Apache Airflow image.
+  # Mounts the local airflow/ folder so it picks up your DAGs.
+  sleek-airflow:
+    image: apache/airflow:2.7.3
+    volumes:
+      - ./airflow:/opt/airflow
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW_HOME=/opt/airflow
+    command: airflow standalone   # starts webserver + scheduler in one process (dev mode)
+
+  # --- FASTAPI BACKEND ---
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./model_.pkl:/app/model_.pkl    # mount the trained model into the container
+    environment:
+      - MLFLOW_TRACKING_URI=http://host.docker.internal:4040
