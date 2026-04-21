@@ -4,6 +4,7 @@ venv/
 # Data files — tracked by DVC, not Git
 *.csv
 *.pkl
+!model_.pkl
 
 # Airflow generated files
 airflow/logs/
