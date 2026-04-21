@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-mlops-deployment
+  labels:
+    app: weather-mlops
+spec:
+  replicas: 2                        # run 2 identical pods for availability
+  selector:
+    matchLabels:
+      app: weather-mlops
+  template:
+    metadata:
+      labels:
+        app: weather-mlops
+    spec:
+      containers:
+      - name: weather-mlops
+        image: weather-mlops:latest
+        imagePullPolicy: Never       # use the locally built image (Minikube context)
+        workingDir: /app
+        command: ["python"]
+        args: ["backend/app.py"]
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MLFLOW_TRACKING_URI
+          value: "http://host.minikube.internal:4040"
+        - name: MODEL_PATH
+          value: "/app/model_.pkl"
+        - name: DB_PATH
+          value: "/app/users.db"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
