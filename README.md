@@ -11,3 +11,4 @@ A complete end-to-end Machine Learning Operations (MLOps) project that predicts 
 * **Containerization & Deployment:** Dockerized application deployed on a local Kubernetes cluster (Minikube).
 * **Testing:** Unit tests for pipeline validation using `unittest` and `mock`.
 
+started kubernates on the localhost server.
